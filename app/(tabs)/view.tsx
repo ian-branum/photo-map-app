@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabaseClient';
 
-export default function TabOneScreen() {
+export default function ViewScreen() {
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState<Session | null>(null);
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function TabOneScreen() {
   }
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Capture Mode (placeholder)</Text>
+      <Text>View Mode (placeholder)</Text>
     </View>
   );
-}
+} 

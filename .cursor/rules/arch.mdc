@@ -1,0 +1,73 @@
+---
+alwaysApply: true
+---
+
+# Expo Go Mobile App Architecture Rules
+
+## Overview
+- These rules define the architectural standards for Expo Go mobile apps in this codebase.
+- They ensure maintainability, scalability, and developer consistency.
+
+## Project Structure
+- Use TypeScript throughout the codebase.
+- Organize code by feature or domain (feature folders), not by type (e.g., avoid global "components" or "utils" folders unless shared across features).
+- Place screens, hooks, services, and context/providers within their respective feature folders.
+- Keep presentational (UI) components separate from business logic and data-fetching logic.
+- Use a clear, consistent folder naming convention (e.g., camelCase or kebab-case, but not both).
+
+## State Management
+- Use React Context or a state management library (e.g., Zustand, Redux) for global state; avoid prop drilling for shared state.
+- Keep local state within components when it is not shared.
+- Store persistent state (e.g., auth tokens) securely using Expo SecureStore or AsyncStorage.
+- Avoid unnecessary global state; prefer local state when possible.
+
+## Business Logic & Hooks
+- Place business logic in custom hooks or service files, not in UI components.
+- Name hooks with the `use` prefix (e.g., `useAuth`, `usePhotoUpload`).
+- Keep hooks pure and composable; avoid side effects outside of React's lifecycle.
+- Use service files for API calls, data transformation, and non-UI logic.
+
+## API & Data Layer
+- Use a dedicated API client (e.g., Supabase, Axios, fetch) in a `lib/` or `services/` directory.
+- Centralize API endpoints and configuration.
+- Handle API errors gracefully and provide user feedback.
+- Use environment variables for API keys and secrets; never hardcode sensitive data.
+- Validate and sanitize all data received from external sources.
+
+## Testing
+- Write unit tests for business logic, hooks, and API wrappers.
+- Write integration tests for critical user flows and data interactions.
+- Use Jest and React Native Testing Library for tests.
+- Place tests in `__tests__` folders adjacent to the code they test.
+- Ensure all tests are deterministic and do not depend on external services (use mocks/stubs).
+
+## Configuration & Environment
+- Use environment variables for secrets, API keys, and configuration (e.g., via `.env` files and Expo config plugins).
+- Never commit secrets or sensitive data to version control.
+- Document required environment variables in a `README.md` or `.env.example` file.
+
+## Performance & Best Practices
+- Follow Expo and React Native community best practices for performance and accessibility.
+- Optimize images and assets for mobile (size, format, resolution).
+- Avoid unnecessary re-renders by using `React.memo`, `useMemo`, and `useCallback` where appropriate.
+- Use lazy loading and code splitting for large screens or feature modules.
+- Profile and monitor app performance regularly.
+
+## Accessibility
+- Ensure all interactive elements are accessible (labels, roles, touch targets).
+- Use semantic components and accessibility props where possible.
+- Ensure sufficient color contrast and readable font sizes.
+
+## Dependency Management
+- Use the minimum number of third-party libraries necessary.
+- Prefer well-maintained, lightweight libraries.
+- Keep dependencies up to date and remove unused packages regularly.
+
+## Documentation
+- Document all custom hooks, services, and complex components with JSDoc or TypeScript comments.
+- Maintain up-to-date onboarding and architecture documentation in the `doc/` directory.
+
+
+
+
+

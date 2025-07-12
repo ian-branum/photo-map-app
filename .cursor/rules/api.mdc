@@ -1,0 +1,40 @@
+---
+description: Apply when data is being exchanged with off-app services such as Supabase or other external APIs. 
+alwaysApply: false
+---
+# API Rules for Expo Go apps
+
+## Data Storage & Access
+   - All remote data (e.g., photos, sites, user info) must be stored in a centralized backend (e.g., Supabase with PostGIS for geospatial queries).
+   - Persistent data should rarely be stored solely on the client device exept when necessary during offline opeation. Sync with off device APIs promptly when re-connected. 
+
+## API Interaction
+   - All API interactions must be asynchronous and resilient to network changes (handle offline/online transitions, queue/sync on reconnect).
+   - Use a dedicated TypeScript module/service for each third-party or platform API (e.g., camera, location, notifications, file system, remote APIs).  
+     - Do not call these APIs directly from screens or UI components.
+     - Expose only clean, typed interfaces to the rest of the app.
+
+## Error Handling & User Feedback
+   - All API calls must implement robust error handling and provide meaningful feedback to the user (e.g., loading, error, and success states).
+   - Gracefully degrade functionality when offline or when an API is unavailable.
+
+## Security & Privacy
+   - Never expose secrets, API keys, or sensitive configuration in the client codebase. 
+   - Validate and sanitize all data sent to and received from external APIs.
+
+## Testing & Mocking
+   - All API modules must be unit tested, with mocks for external dependencies.
+   - Provide mock implementations for offline development and testing.
+
+## Performance & Efficiency
+   - Minimize the number of API calls; batch requests where possible.
+   - Cache remote data locally when appropriate, and implement cache invalidation strategies.
+
+## Documentation
+   - Document all API modules, including expected inputs, outputs, error cases, and usage examples.
+
+## Summary of Key Practices:
+- Encapsulate all external API logic in TypeScript modules/services.
+- Handle network transitions and errors gracefully.
+- Never expose secrets or sensitive data in the client.
+- Test and document all API interactions.

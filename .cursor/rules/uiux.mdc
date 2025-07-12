@@ -1,0 +1,38 @@
+---
+description: Apply when any visual components are being modified. 
+alwaysApply: false
+---
+
+# UI/UX Standards for ExpoGo Mobile Apps
+
+## General Styling
+- Use NativeWind (Tailwind utility classes for React Native) for all layout, spacing, color, and typography.
+- Avoid custom inline styles unless absolutely necessary.
+- Define and use a consistent color palette and font scale in the Tailwind config.
+
+## Component Libraries
+- Use the minimum number of third-party component libraries.
+- For UI primitives (buttons, inputs, cards, etc.), use NativeWind utility classes and React Native built-in components.
+- For icons, use `@expo/vector-icons`.
+- For modals and overlays, use React Native's built-in `Modal` component or `react-native-modal` if advanced features are needed.
+
+## Design Consistency
+- Stick to a single design system throughout the app.
+- Use consistent spacing, font sizes, and color palette (enforced via Tailwind config).
+- Avoid mixing design paradigms (e.g., Material and iOS styles together).
+
+## Accessibility
+- All interactive elements must be accessible (labels, roles, touch targets).
+- Use semantic components and accessibility props where possible.
+- Ensure sufficient color contrast and readable font sizes.
+
+## Navigation
+- Use Expo Router or React Navigation for all navigation patterns.
+- Keep navigation simple, predictable, and consistent.
+
+## Performance
+- Avoid unnecessary re-renders and heavy libraries.
+- Prefer lightweight, well-maintained libraries.
+- Optimize images and assets for mobile performance.
+
+
