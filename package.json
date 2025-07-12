@@ -7,10 +7,23 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:coverage": "jest --coverage"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": ["<rootDir>/__tests__/setup.ts"],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts",
+      "**/__tests__/**/*.test.tsx"
+    ],
+    "collectCoverageFrom": [
+      "lib/**/*.{ts,tsx}",
+      "!lib/**/*.d.ts"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
